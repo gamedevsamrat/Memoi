@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbvcvenu6rs7n"]
+
+[ext_resource type="Script" path="res://scenes/Fruit.gd" id="1_c1e1n"]
+[ext_resource type="Texture2D" uid="uid://b0rctbcgrka7h" path="res://sources/level5/Mango.png" id="1_tnpq1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_klgoh"]
+
+[node name="Fruit4" type="Area2D" groups=["Player"]]
+script = ExtResource("1_c1e1n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tnpq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -7)
+shape = SubResource("CircleShape2D_klgoh")

@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://l3k65snud162"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_b5vre"]
+[ext_resource type="Texture2D" uid="uid://carf0d2exwn5q" path="res://sources/main menu.png" id="2_k8522"]
+[ext_resource type="Texture2D" uid="uid://bosqb8kdyfurg" path="res://sources/Bulding 2 (1).png" id="2_tyb7a"]
+[ext_resource type="Texture2D" uid="uid://copjt60u5c5o6" path="res://sources/Sakamoto .png" id="4_ftf1s"]
+[ext_resource type="PackedScene" uid="uid://dpt5hq0rppnq" path="res://scenes/fade_transition.tscn" id="5_4k4qs"]
+
+[node name="Main menu" type="Node2D"]
+script = ExtResource("1_b5vre")
+
+[node name="Button manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Button manager"]
+position = Vector2(575, 294)
+texture = ExtResource("2_k8522")
+
+[node name="brown building" type="Sprite2D" parent="Button manager"]
+position = Vector2(987, 511)
+scale = Vector2(0.597168, 0.597168)
+texture = ExtResource("2_tyb7a")
+
+[node name="Start" type="Button" parent="Button manager"]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 199.0
+offset_right = 637.0
+offset_bottom = 244.0
+text = "START"
+
+[node name="Exit" type="Button" parent="Button manager"]
+layout_mode = 0
+offset_left = 522.0
+offset_top = 269.0
+offset_right = 634.0
+offset_bottom = 311.0
+text = "EXIT"
+
+[node name="Sakamoto" type="Sprite2D" parent="Button manager"]
+position = Vector2(1108.25, 633.75)
+scale = Vector2(0.184375, 0.184375)
+texture = ExtResource("4_ftf1s")
+
+[node name="Fade_transition" parent="." instance=ExtResource("5_4k4qs")]
+visible = false
+
+[node name="FADE_TIMER" type="Timer" parent="Fade_transition"]
+
+[connection signal="pressed" from="Button manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button manager/Exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="Fade_transition/FADE_TIMER" to="." method="_on_fade_timer_timeout"]

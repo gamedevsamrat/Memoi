@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ojvflr27g6q1"]
+
+[ext_resource type="Texture2D" uid="uid://bq2vslqmdul1i" path="res://sources/level5/Milk.png" id="1_d47gh"]
+[ext_resource type="Script" path="res://scenes/fruits/fruit.gd" id="1_fy8v4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ua85"]
+size = Vector2(27, 33)
+
+[node name="milk" type="RigidBody2D"]
+script = ExtResource("1_fy8v4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d47gh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_3ua85")

@@ -1,0 +1,86 @@
+[gd_scene load_steps=18 format=3 uid="uid://ctfwjm5quu1ed"]
+
+[ext_resource type="Script" path="res://scenes/mover.gd" id="1_2h7te"]
+[ext_resource type="Texture2D" uid="uid://ctmpvqt77mli7" path="res://sources/level5/Characterbsk.png" id="1_h8e5c"]
+[ext_resource type="Texture2D" uid="uid://dkm5g6mwiexhy" path="res://sources/level1source/Frame.png" id="1_q7xxe"]
+[ext_resource type="Script" path="res://scenes/fm.gd" id="3_iyf2p"]
+[ext_resource type="PackedScene" uid="uid://ck4c65oo5kacc" path="res://scenes/fruit1.tscn" id="4_m1ycs"]
+[ext_resource type="PackedScene" uid="uid://b0iy218ru64i1" path="res://scenes/fruit2.tscn" id="5_1d8g8"]
+[ext_resource type="PackedScene" uid="uid://3jhtc023myw" path="res://scenes/fruit3.tscn" id="6_socel"]
+[ext_resource type="PackedScene" uid="uid://bbvcvenu6rs7n" path="res://scenes/fruit4.tscn" id="7_xd6i8"]
+[ext_resource type="PackedScene" uid="uid://kmp3121mvqkm" path="res://scenes/fruit5.tscn" id="8_n3l6c"]
+[ext_resource type="PackedScene" uid="uid://bda2s2lo7sigf" path="res://scenes/fruit6.tscn" id="9_x3ghc"]
+[ext_resource type="Script" path="res://scenes/RecipeDisplay.gd" id="10_5uss5"]
+[ext_resource type="Texture2D" uid="uid://bbnfyefot7jqm" path="res://sources/level5/R1.jpg" id="11_k8qou"]
+[ext_resource type="Texture2D" uid="uid://bblgr8700e4hg" path="res://sources/level5/R2.jpg" id="12_knqeq"]
+[ext_resource type="Texture2D" uid="uid://batx8ewtcya30" path="res://sources/level5/R3.jpg" id="13_m2bni"]
+[ext_resource type="Texture2D" uid="uid://wxu67a5tenwg" path="res://sources/level5/R4.jpg" id="14_2kp7b"]
+[ext_resource type="Texture2D" uid="uid://w2o6venvqb2y" path="res://sources/level5/R5.jpg" id="15_lcn1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_halt0"]
+size = Vector2(42, 1)
+
+[node name="level5" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(954, 198)
+scale = Vector2(7.09774, 7.09774)
+texture = ExtResource("1_q7xxe")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(616, 569)
+script = ExtResource("1_2h7te")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_h8e5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, -52.5)
+shape = SubResource("RectangleShape2D_halt0")
+
+[node name="FruitManager" type="Node2D" parent="."]
+position = Vector2(415, -57)
+script = ExtResource("3_iyf2p")
+
+[node name="Timer" type="Timer" parent="FruitManager"]
+
+[node name="Fruit1" parent="FruitManager" instance=ExtResource("4_m1ycs")]
+
+[node name="Fruit2" parent="FruitManager" instance=ExtResource("5_1d8g8")]
+
+[node name="Fruit3" parent="FruitManager" instance=ExtResource("6_socel")]
+
+[node name="Fruit4" parent="FruitManager" instance=ExtResource("7_xd6i8")]
+
+[node name="Fruit5" parent="FruitManager" instance=ExtResource("8_n3l6c")]
+
+[node name="Fruit6" parent="FruitManager" instance=ExtResource("9_x3ghc")]
+
+[node name="RecipeDisplay" type="Node2D" parent="."]
+position = Vector2(955, 198)
+scale = Vector2(3.69603, 3.69603)
+script = ExtResource("10_5uss5")
+
+[node name="R1" type="Sprite2D" parent="RecipeDisplay"]
+visible = false
+scale = Vector2(0.015701, 0.015701)
+texture = ExtResource("11_k8qou")
+
+[node name="R2" type="Sprite2D" parent="RecipeDisplay"]
+visible = false
+scale = Vector2(0.0160398, 0.0160398)
+texture = ExtResource("12_knqeq")
+
+[node name="R3" type="Sprite2D" parent="RecipeDisplay"]
+visible = false
+scale = Vector2(0.017121, 0.017121)
+texture = ExtResource("13_m2bni")
+
+[node name="R4" type="Sprite2D" parent="RecipeDisplay"]
+visible = false
+scale = Vector2(0.0170072, 0.0170072)
+texture = ExtResource("14_2kp7b")
+
+[node name="R5" type="Sprite2D" parent="RecipeDisplay"]
+scale = Vector2(0.0167876, 0.0167876)
+texture = ExtResource("15_lcn1b")

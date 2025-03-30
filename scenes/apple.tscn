@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://caax0aqycvjkm"]
+
+[ext_resource type="Script" path="res://scenes/ae.gd" id="1_l0k28"]
+[ext_resource type="Texture2D" uid="uid://bfrx5wnaicddw" path="res://sources/level1source/Apple.png" id="2_ln7k6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_muwle"]
+light_mode = 2
+
+[sub_resource type="Animation" id="Animation_wwvjd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("apple:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_8x8d0"]
+resource_name = "appleani"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("apple:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.05, 0, 0.05, 0, 2, -0.05, 0, 0.05, 0, 1, -0.05, 0, 0.05, 0, 2, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vjxou"]
+_data = {
+"RESET": SubResource("Animation_wwvjd"),
+"appleani": SubResource("Animation_8x8d0")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wi46p"]
+height = 22.0
+
+[node name="AE" type="Node2D"]
+position = Vector2(-319, -492)
+script = ExtResource("1_l0k28")
+
+[node name="apple" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_muwle")
+position = Vector2(527, 569)
+texture = ExtResource("2_ln7k6")
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vjxou")
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(529, 571)
+shape = SubResource("CapsuleShape2D_wi46p")

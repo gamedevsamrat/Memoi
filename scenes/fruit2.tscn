@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0iy218ru64i1"]
+
+[ext_resource type="Texture2D" uid="uid://b18tvhymnb1tw" path="res://sources/level5/Blue berry.png" id="1_axgkk"]
+[ext_resource type="Script" path="res://scenes/Fruit.gd" id="1_jx8yv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6oslu"]
+radius = 12.0416
+
+[node name="Fruit2" type="Area2D" groups=["Player"]]
+position = Vector2(-36, -24)
+script = ExtResource("1_jx8yv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, 8)
+texture = ExtResource("1_axgkk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6oslu")

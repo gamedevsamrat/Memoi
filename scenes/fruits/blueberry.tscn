@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0b14je5vdg85"]
+
+[ext_resource type="Script" path="res://scenes/fruits/fruit.gd" id="1_ffc24"]
+[ext_resource type="Texture2D" uid="uid://b18tvhymnb1tw" path="res://sources/level5/Blue berry.png" id="1_u8p65"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j1oto"]
+
+[node name="blue" type="RigidBody2D"]
+script = ExtResource("1_ffc24")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 7)
+texture = ExtResource("1_u8p65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j1oto")

@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnfxkgwwvw3pe"]
+
+[ext_resource type="Texture2D" uid="uid://1nvd58511hyq" path="res://sources/level4/Comp.png" id="1_5x2ac"]
+[ext_resource type="Script" path="res://scenes/cardcontainer.gd" id="1_fl1a4"]
+[ext_resource type="Texture2D" uid="uid://bnmeevb31qgtp" path="res://sources/level4/ghost.png" id="2_dc5f1"]
+
+[node name="level4" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(610.5, 311)
+scale = Vector2(1.05816, 1)
+texture = ExtResource("1_5x2ac")
+
+[node name="CardContainer" type="Node2D" parent="."]
+position = Vector2(-55, -134)
+script = ExtResource("1_fl1a4")
+
+[node name="CardColumn1" type="Node2D" parent="CardContainer"]
+position = Vector2(0, -1)
+
+[node name="P1" type="Node2D" parent="CardContainer/CardColumn1"]
+position = Vector2(291, 289)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn1/P1"]
+offset_left = 85.0
+offset_top = 94.0
+offset_right = 170.0
+offset_bottom = 173.0
+scale = Vector2(1.27066, 1.27066)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="P2" type="Node2D" parent="CardContainer/CardColumn1"]
+position = Vector2(403, 217)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn1/P2"]
+offset_top = 67.0
+offset_right = 82.0
+offset_bottom = 149.0
+scale = Vector2(1.20412, 1.20412)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="CardColumn2" type="Node2D" parent="CardContainer"]
+
+[node name="P3" type="Node2D" parent="CardContainer/CardColumn2"]
+position = Vector2(525, 359)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn2/P3"]
+offset_left = -38.0
+offset_top = 30.0
+offset_right = 45.0
+offset_bottom = 113.0
+scale = Vector2(1.22383, 1.22383)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="P4" type="Node2D" parent="CardContainer/CardColumn2"]
+position = Vector2(657, 221)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn2/P4"]
+offset_left = -120.0
+offset_top = 58.0
+offset_right = -37.0
+offset_bottom = 141.0
+scale = Vector2(1.22328, 1.22328)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="CardColumn3" type="Node2D" parent="CardContainer"]
+
+[node name="P5" type="Node2D" parent="CardContainer/CardColumn3"]
+position = Vector2(860, 220)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn3/P5"]
+offset_left = -205.0
+offset_top = 59.0
+offset_right = -122.0
+offset_bottom = 142.0
+scale = Vector2(1.24754, 1.24754)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="P6" type="Node2D" parent="CardContainer/CardColumn3"]
+position = Vector2(767, 358)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn3/P6"]
+offset_left = -163.0
+offset_top = 29.0
+offset_right = -79.0
+offset_bottom = 113.0
+scale = Vector2(1.23098, 1.23098)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="CardColumn4" type="Node2D" parent="CardContainer"]
+
+[node name="P7" type="Node2D" parent="CardContainer/CardColumn4"]
+position = Vector2(1054, 224)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn4/P7"]
+offset_left = -292.0
+offset_top = 53.0
+offset_right = -210.0
+offset_bottom = 135.0
+scale = Vector2(1.27818, 1.27818)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true
+
+[node name="P8" type="Node2D" parent="CardContainer/CardColumn4"]
+position = Vector2(959, 366)
+
+[node name="TextureButton" type="TextureButton" parent="CardContainer/CardColumn4/P8"]
+offset_left = -241.0
+offset_top = 26.0
+offset_right = -158.0
+offset_bottom = 109.0
+scale = Vector2(1.15022, 1.15022)
+texture_normal = ExtResource("2_dc5f1")
+ignore_texture_size = true

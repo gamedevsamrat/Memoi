@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjw4oudh6vs13"]
+
+[ext_resource type="Script" path="res://scenes/powerup.gd" id="1_c5v1n"]
+[ext_resource type="Texture2D" uid="uid://4ah6wct1kha1" path="res://sources/level1source/power.png" id="2_vegmo"]
+[ext_resource type="Script" path="res://scenes/area2d.gd" id="3_g5tex"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rxr5i"]
+radius = 19.0
+height = 44.0
+
+[sub_resource type="Animation" id="Animation_n8q0t"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_0dkpf"]
+resource_name = "anipower"
+length = 0.2667
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("power:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.133333, 0.2, 0.233333, 0.266667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("power:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-130, -0.13335, 0, 0.13335, 0, -130, -0.13335, 0, 0.13335, 0, -130, -0.13335, 0, 0.13335, 0, -130, -0.13335, 0, 0.13335, 0),
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("power:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-51, -0.13335, 0, 0.13335, 0, -40, -0.13335, 0, 0.13335, 0, -36, -0.13335, 0, 0.13335, 0, -51, -0.13335, 0, 0.13335, 0),
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.166667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gomu"]
+_data = {
+"RESET": SubResource("Animation_n8q0t"),
+"anipower": SubResource("Animation_0dkpf")
+}
+
+[node name="PowerUp" type="Node2D"]
+position = Vector2(508, 289)
+script = ExtResource("1_c5v1n")
+
+[node name="power" type="Sprite2D" parent="."]
+position = Vector2(-130, -51)
+texture = ExtResource("2_vegmo")
+hframes = 3
+vframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_g5tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-136, -49)
+shape = SubResource("CapsuleShape2D_rxr5i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5gomu")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

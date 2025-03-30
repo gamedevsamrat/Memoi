@@ -1,0 +1,55 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctfwjm5quu1ed"]
+
+[ext_resource type="Texture2D" uid="uid://ctmpvqt77mli7" path="res://sources/level5/Characterbsk.png" id="1_h8e5c"]
+[ext_resource type="Script" path="res://player.gd" id="2_dirrw"]
+[ext_resource type="Texture2D" uid="uid://ddvnb06a1pi48" path="res://sources/Character.png" id="3_63xnh"]
+[ext_resource type="Script" path="res://scenes/fruit_manager.gd" id="4_xlmdw"]
+[ext_resource type="PackedScene" uid="uid://p17px65d5gxk" path="res://scenes/fruits/banana.tscn" id="5_tms3g"]
+[ext_resource type="PackedScene" uid="uid://c0b14je5vdg85" path="res://scenes/fruits/blueberry.tscn" id="6_kmr8x"]
+[ext_resource type="PackedScene" uid="uid://dekoqv1me0vb3" path="res://scenes/fruits/kiwi.tscn" id="7_lhrmy"]
+[ext_resource type="PackedScene" uid="uid://d21l70b1bvic2" path="res://scenes/fruits/mango.tscn" id="8_52u61"]
+[ext_resource type="PackedScene" uid="uid://ojvflr27g6q1" path="res://scenes/fruits/milk.tscn" id="9_igpws"]
+[ext_resource type="PackedScene" uid="uid://dwh6duh7nwc8x" path="res://scenes/fruits/strawberry.tscn" id="10_13rok"]
+[ext_resource type="Script" path="res://scenes/stage_manager.gd" id="11_j2poi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_halt0"]
+size = Vector2(42, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koq6v"]
+size = Vector2(37, 2)
+
+[node name="level5" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_h8e5c")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_dirrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, -52.5)
+shape = SubResource("RectangleShape2D_halt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("3_63xnh")
+hframes = 2
+vframes = 2
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2(-0.5, -62)
+shape = SubResource("RectangleShape2D_koq6v")
+
+[node name="FruitManager" type="Node2D" parent="."]
+script = ExtResource("4_xlmdw")
+fruit_scenes = Array[PackedScene]([ExtResource("5_tms3g"), ExtResource("6_kmr8x"), ExtResource("7_lhrmy"), ExtResource("8_52u61"), ExtResource("9_igpws"), ExtResource("10_13rok")])
+
+[node name="Timer" type="Timer" parent="FruitManager"]
+
+[node name="BombManager" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="BombManager"]
+
+[node name="StageManager" type="Node2D" parent="."]
+script = ExtResource("11_j2poi")

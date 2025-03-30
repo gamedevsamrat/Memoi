@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d21l70b1bvic2"]
+
+[ext_resource type="Script" path="res://scenes/fruits/fruit.gd" id="1_0ed0t"]
+[ext_resource type="Texture2D" uid="uid://b0rctbcgrka7h" path="res://sources/level5/Mango.png" id="1_pb63i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfdik"]
+radius = 13.0
+height = 26.0
+
+[node name="mango" type="RigidBody2D"]
+script = ExtResource("1_0ed0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 7)
+texture = ExtResource("1_pb63i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wfdik")

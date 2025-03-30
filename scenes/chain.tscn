@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://h6wuk2vj6eyj"]
+
+[ext_resource type="Script" path="res://scenes/chain.gd" id="1_hkab4"]
+[ext_resource type="Texture2D" uid="uid://b5abtekff5gqy" path="res://sources/chainimg.png" id="1_yqayh"]
+[ext_resource type="Script" path="res://scenes/block.gd" id="3_qy1ld"]
+[ext_resource type="Texture2D" uid="uid://cpjffgr12l7ac" path="res://sources/download 11.png" id="4_ft3k0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms63u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wu6i1"]
+radius = 3.0
+height = 58.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7vt4"]
+size = Vector2(86.8012, 39.0089)
+
+[sub_resource type="Animation" id="Animation_ywgc6"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.959931, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_tp17m"]
+resource_name = "swing"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.959931, -0.25, 0, 0.25, 0, 0.959931, -0.25, 0, 0.25, 0, -0.959931, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dnbeq"]
+_data = {
+"RESET": SubResource("Animation_ywgc6"),
+"swing": SubResource("Animation_tp17m")
+}
+
+[node name="chain" type="Node2D"]
+rotation = 0.959931
+script = ExtResource("1_hkab4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+
+[node name="chainAnchor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chainAnchor"]
+shape = SubResource("CapsuleShape2D_ms63u")
+one_way_collision_margin = 0.0
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(-1, 15)
+node_a = NodePath("../chainAnchor")
+node_b = NodePath("../segment")
+
+[node name="segment" type="RigidBody2D" parent="."]
+position = Vector2(0, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="segment"]
+position = Vector2(-1, 13)
+shape = SubResource("CapsuleShape2D_wu6i1")
+
+[node name="Sprite2D" type="Sprite2D" parent="segment"]
+position = Vector2(-1.0625, -5.125)
+scale = Vector2(0.0214208, 0.0214208)
+texture = ExtResource("1_yqayh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="segment"]
+position = Vector2(-1.0625, 13.875)
+scale = Vector2(0.0214208, 0.0214208)
+texture = ExtResource("1_yqayh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="segment"]
+position = Vector2(-1.0625, 31.875)
+scale = Vector2(0.0214208, 0.0214208)
+texture = ExtResource("1_yqayh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="segment"]
+position = Vector2(-1.0625, 31.875)
+scale = Vector2(0.0214208, 0.0214208)
+texture = ExtResource("1_yqayh")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="segment"]
+position = Vector2(-1.0625, 31.875)
+scale = Vector2(0.0214208, 0.0214208)
+texture = ExtResource("1_yqayh")
+metadata/_edit_group_ = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 5.0
+script = ExtResource("3_qy1ld")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D"]
+position = Vector2(0.281944, 81.6083)
+node_a = NodePath("../../segment")
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(0.281944, 81.6083)
+rotation = 2.1629
+scale = Vector2(2, 2)
+texture = ExtResource("4_ft3k0")
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1.29406, 82.6831)
+rotation = -0.98521
+shape = SubResource("RectangleShape2D_p7vt4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dnbeq")
+}

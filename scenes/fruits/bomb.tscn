@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2gex444sfaxl"]
+
+[ext_resource type="Script" path="res://scenes/fruits/bomb.gd" id="1_gu2we"]
+[ext_resource type="Texture2D" uid="uid://4t74yyjwv4hx" path="res://sources/level5/Bomb.png" id="1_ledy7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_agv16"]
+radius = 11.0454
+
+[node name="bomb" type="Area2D"]
+script = ExtResource("1_gu2we")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ledy7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_agv16")

@@ -1,0 +1,144 @@
+[gd_scene load_steps=18 format=3 uid="uid://dqv12kxm0pm7y"]
+
+[ext_resource type="PackedScene" uid="uid://h6wuk2vj6eyj" path="res://scenes/chain.tscn" id="1_aagec"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_bggyl"]
+[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="2_t5pw1"]
+[ext_resource type="PackedScene" uid="uid://dpt5hq0rppnq" path="res://scenes/fade_transition.tscn" id="3_xmoks"]
+[ext_resource type="Script" path="res://scenes/platform.gd" id="4_p8q45"]
+[ext_resource type="Texture2D" uid="uid://cj5l2i3sxm0vv" path="res://sources/white.jpg" id="5_e0ir4"]
+[ext_resource type="Texture2D" uid="uid://tr5f6sb51mb0" path="res://sources/red-color-solid-background-1920x1080.png" id="7_u54af"]
+[ext_resource type="Texture2D" uid="uid://bxolrjsjf2is4" path="res://sources/check.png" id="8_l5mit"]
+[ext_resource type="Texture2D" uid="uid://by5qgg2xr6qc" path="res://sources/L1.png" id="9_kgvcx"]
+[ext_resource type="Texture2D" uid="uid://mkg03mu0f2qd" path="res://sources/L2.png" id="10_vumgg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyrvy"]
+size = Vector2(90.9523, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rc7d"]
+size = Vector2(90.9523, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0cqc"]
+size = Vector2(637.261, 21)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2m7w5"]
+b = Vector2(-3.95444, 151.843)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_awsge"]
+b = Vector2(1.97723, 160.384)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3b5rf"]
+a = Vector2(0.235168, 14.8273)
+b = Vector2(0.893616, 56.3437)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iv4ed"]
+a = Vector2(-0.988617, 43.6548)
+
+[node name="Main" type="Node2D"]
+position = Vector2(136, -2)
+script = ExtResource("1_bggyl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(439, 417)
+zoom = Vector2(2.7, 2.7)
+script = ExtResource("2_t5pw1")
+
+[node name="chain" parent="." instance=ExtResource("1_aagec")]
+position = Vector2(441, 308)
+
+[node name="ColorRect" parent="." instance=ExtResource("3_xmoks")]
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(137, 301)
+scale = Vector2(1.01152, 1.05372)
+script = ExtResource("4_p8q45")
+chain_scene = ExtResource("1_aagec")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+position = Vector2(310.918, 147)
+scale = Vector2(0.312724, 0.0959302)
+texture = ExtResource("5_e0ir4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(309.435, 147)
+shape = SubResource("RectangleShape2D_xyrvy")
+
+[node name="Area2D" type="Area2D" parent="Platform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Area2D"]
+position = Vector2(310.424, 144.5)
+shape = SubResource("RectangleShape2D_7rc7d")
+
+[node name="SecondArea" type="Area2D" parent="Platform"]
+rotation = -0.00651123
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/SecondArea"]
+position = Vector2(325.867, 175.125)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_n0cqc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform/SecondArea"]
+position = Vector2(325.319, 171.402)
+scale = Vector2(0.63657, 0.0799156)
+texture = ExtResource("7_u54af")
+
+[node name="mwall" type="Area2D" parent="Platform"]
+
+[node name="Wall1" type="CollisionShape2D" parent="Platform/mwall"]
+position = Vector2(220.479, 108.18)
+shape = SubResource("SegmentShape2D_2m7w5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform/mwall/Wall1"]
+position = Vector2(-1.55446, 75.4943)
+rotation = 0.0118578
+scale = Vector2(0.00825763, 4.56522)
+texture = ExtResource("8_l5mit")
+
+[node name="Wall2" type="CollisionShape2D" parent="Platform/mwall"]
+position = Vector2(399.399, 107.239)
+shape = SubResource("SegmentShape2D_awsge")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform/mwall/Wall2"]
+position = Vector2(0.798678, 75.2112)
+rotation = 1.5708
+scale = Vector2(0.498592, 0.110737)
+texture = ExtResource("8_l5mit")
+
+[node name="Wall3" type="CollisionShape2D" parent="Platform/mwall"]
+position = Vector2(275.823, 154.69)
+rotation = 1.5708
+shape = SubResource("SegmentShape2D_3b5rf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform/mwall/Wall3"]
+position = Vector2(0.57291, 34.4159)
+rotation = -0.0230552
+scale = Vector2(0.00847878, 1.16009)
+texture = ExtResource("8_l5mit")
+
+[node name="Wall4" type="CollisionShape2D" parent="Platform/mwall"]
+position = Vector2(410.279, 153.622)
+rotation = 1.5708
+shape = SubResource("SegmentShape2D_iv4ed")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform/mwall/Wall4"]
+position = Vector2(-0.158691, 27.1387)
+rotation = 1.5708
+scale = Vector2(0.115644, 0.0398264)
+texture = ExtResource("8_l5mit")
+
+[node name="MwallTimer" type="Timer" parent="Platform"]
+
+[node name="ChainTimer" type="Timer" parent="Platform"]
+
+[node name="p1" type="Sprite2D" parent="."]
+position = Vector2(279, 357)
+texture = ExtResource("9_kgvcx")
+
+[node name="p2" type="Sprite2D" parent="."]
+position = Vector2(598, 360)
+texture = ExtResource("10_vumgg")
+
+[connection signal="body_entered" from="Platform/Area2D" to="Platform" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Platform/SecondArea" to="Platform" method="_on_second_area_body_entered"]
+[connection signal="body_entered" from="Platform/mwall" to="Platform" method="_on_area_2d_2_body_entered"]
+[connection signal="timeout" from="Platform/MwallTimer" to="Platform" method="_on_mwall_timer_timeout"]
+[connection signal="timeout" from="Platform/ChainTimer" to="Platform" method="_on_chain_timer_timeout"]

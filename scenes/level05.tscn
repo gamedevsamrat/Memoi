@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://deojc2peepao4"]
+
+[ext_resource type="Script" path="res://fruit_spawner.gd" id="1_h4kce"]
+[ext_resource type="Script" path="res://basket.gd" id="4_tpye7"]
+[ext_resource type="Texture2D" uid="uid://ctmpvqt77mli7" path="res://sources/level5/Characterbsk.png" id="5_ksd5e"]
+[ext_resource type="PackedScene" uid="uid://4d4mjhr7x8qj" path="res://scenes/brick/Brick2.tscn" id="8_0f5f8"]
+[ext_resource type="Script" path="res://scenes/fruit_manager.gd" id="9_11ryj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5uow"]
+size = Vector2(36, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4mil"]
+size = Vector2(20, 3)
+
+[node name="level05" type="Node2D"]
+
+[node name="Basket" type="CharacterBody2D" parent="."]
+position = Vector2(752, 336)
+script = ExtResource("4_tpye7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Basket"]
+texture = ExtResource("5_ksd5e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Basket"]
+position = Vector2(0, -61.5)
+shape = SubResource("RectangleShape2D_s5uow")
+
+[node name="Area2D" type="Area2D" parent="Basket"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Basket/Area2D"]
+position = Vector2(-1, -66)
+shape = SubResource("RectangleShape2D_q4mil")
+
+[node name="FruitSpawner" type="Node2D" parent="."]
+position = Vector2(801, 8)
+script = ExtResource("1_h4kce")
+fruit_scenes = Array[PackedScene]([ExtResource("8_0f5f8")])
+
+[node name="SpawnTimer" type="Timer" parent="FruitSpawner"]
+
+[node name="FruitManager" type="Node2D" parent="FruitSpawner"]
+script = ExtResource("9_11ryj")
+
+[node name="Timer" type="Timer" parent="FruitSpawner/FruitManager"]
+
+[connection signal="body_entered" from="Basket/Area2D" to="Basket" method="_on_area_2d_body_entered"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqux3ly3onrlj"]
+
+[ext_resource type="Script" path="res://scenes/co.gd" id="1_65lx1"]
+[ext_resource type="Texture2D" uid="uid://chwbegpg8xv7v" path="res://sources/level1source/Cookie.png" id="2_n2gdm"]
+
+[sub_resource type="Animation" id="Animation_vgojp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CO/cookie:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_o2k66"]
+resource_name = "coani"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CO/cookie:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.06665, 0, 0.06665, 0, 1, -0.1, 0, 0.1, 0, 0, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ej4sh"]
+_data = {
+"RESET": SubResource("Animation_vgojp"),
+"coani": SubResource("Animation_o2k66")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j68lk"]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqcco"]
+size = Vector2(12.7279, 12.7279)
+
+[node name="CO" type="Node2D"]
+position = Vector2(1044, 208)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_65lx1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ej4sh")
+}
+
+[node name="cookie" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_j68lk")
+position = Vector2(8, 40.6667)
+texture = ExtResource("2_n2gdm")
+hframes = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_cqcco")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwh6duh7nwc8x"]
+
+[ext_resource type="Texture2D" uid="uid://cvu2k5mnh3dn8" path="res://sources/level5/Straberry.png" id="1_wsomk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptlvh"]
+
+[node name="Area2D" type="RigidBody2D" groups=["fruit"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wsomk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ptlvh")

@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqxgji33lk7sl"]
+
+[ext_resource type="Script" path="res://level1result.gd" id="1_84imu"]
+[ext_resource type="Texture2D" uid="uid://byq71plmcnr55" path="res://sources/Tick.png" id="2_3h3ls"]
+[ext_resource type="Texture2D" uid="uid://c11rj21q30rqw" path="res://sources/Cross.png" id="3_ybnqt"]
+[ext_resource type="Texture2D" uid="uid://dy1b7wmpeohtp" path="res://sources/Cookie 2.png" id="5_ugngx"]
+[ext_resource type="Texture2D" uid="uid://d0orovicx5og6" path="res://sources/Applesas.png" id="6_if3ro"]
+[ext_resource type="Texture2D" uid="uid://cef6dauigu7q8" path="res://sources/Correct.png" id="6_s6xlb"]
+
+[node name="level1result" type="Node2D"]
+script = ExtResource("1_84imu")
+
+[node name="CO_Plus" type="Button" parent="."]
+offset_left = 686.0
+offset_top = 2.0
+offset_right = 758.0
+offset_bottom = 74.0
+icon = ExtResource("2_3h3ls")
+flat = true
+
+[node name="CO_Minus" type="Button" parent="."]
+offset_left = 686.0
+offset_top = 97.0
+offset_right = 758.0
+offset_bottom = 169.0
+icon = ExtResource("3_ybnqt")
+flat = true
+
+[node name="AE_Plus" type="Button" parent="."]
+offset_left = 27.0
+offset_top = 9.0
+offset_right = 99.0
+offset_bottom = 81.0
+icon = ExtResource("2_3h3ls")
+flat = true
+
+[node name="AE_Minus" type="Button" parent="."]
+offset_left = 29.0
+offset_top = 107.0
+offset_right = 101.0
+offset_bottom = 179.0
+icon = ExtResource("3_ybnqt")
+flat = true
+
+[node name="COImgContainer" type="Node2D" parent="."]
+position = Vector2(772, 313)
+
+[node name="COimg" type="Sprite2D" parent="COImgContainer"]
+position = Vector2(-30, 29)
+scale = Vector2(4, 4)
+texture = ExtResource("5_ugngx")
+hframes = 2
+
+[node name="AEImgContainer" type="Node2D" parent="."]
+position = Vector2(170, 311)
+
+[node name="AEimg" type="Sprite2D" parent="AEImgContainer"]
+position = Vector2(-0.999985, -1.99997)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("6_if3ro")
+
+[node name="Confirm" type="Button" parent="."]
+offset_left = 429.0
+offset_top = 307.0
+offset_right = 498.0
+offset_bottom = 338.0
+text = "
+"
+icon = ExtResource("6_s6xlb")
+flat = true

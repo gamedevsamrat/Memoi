@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctfwjm5quu1ed"]
+
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_clcr3"]
+[ext_resource type="Texture2D" uid="uid://ctmpvqt77mli7" path="res://sources/level5/Characterbsk.png" id="1_h8e5c"]
+[ext_resource type="Script" path="res://scenes/player1.gd" id="2_ydp4k"]
+[ext_resource type="Script" path="res://scenes/fruit_manager.gd" id="4_xlmdw"]
+[ext_resource type="Script" path="res://scenes/bomb_manager.gd" id="10_wmdic"]
+[ext_resource type="Script" path="res://scenes/stage_manager.gd" id="11_j2poi"]
+[ext_resource type="PackedScene" uid="uid://b2gex444sfaxl" path="res://scenes/fruits/bomb.tscn" id="11_t7rgg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_halt0"]
+size = Vector2(42, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koq6v"]
+size = Vector2(37, 2)
+
+[node name="level5" type="Node2D"]
+script = ExtResource("1_clcr3")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(626, 298)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(616, 569)
+script = ExtResource("2_ydp4k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_h8e5c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, -52.5)
+shape = SubResource("RectangleShape2D_halt0")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2(-0.5, -62)
+shape = SubResource("RectangleShape2D_koq6v")
+
+[node name="FruitManager" type="Node2D" parent="."]
+script = ExtResource("4_xlmdw")
+
+[node name="Timer" type="Timer" parent="FruitManager"]
+
+[node name="BombManager" type="Node2D" parent="."]
+script = ExtResource("10_wmdic")
+bomb_scene = ExtResource("11_t7rgg")
+
+[node name="Timer" type="Timer" parent="BombManager"]
+
+[node name="StageManager" type="Node2D" parent="."]
+script = ExtResource("11_j2poi")
+
+[connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
